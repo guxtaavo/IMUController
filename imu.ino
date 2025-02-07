@@ -30,17 +30,12 @@ void loop() {
     // Roll e Pitch pelo acelerômetro (faixa de -180° a 180°)
     float roll = atan2(accY, sqrt(accX * accX + accZ * accZ)) * 180 / PI;
     float pitch = atan2(accX, sqrt(accY * accY + accZ * accZ)) * 180 / PI;
+    float yaw = gyroZ; // Tem que corrigir
 
-    // Yaw pelo giroscópio (integração ao longo do tempo)
-    degreesX += gyroX;
-    degreesY += gyroY;
-    degreesZ += gyroZ;
+    Serial.print("Roll (X): "); Serial.print(roll); Serial.print("° ");
+    Serial.print("Pitch (Y): "); Serial.print(pitch); Serial.print("° ");
+    Serial.print("Yaw (Z): "); Serial.print(yaw); Serial.println("°");
 
-    // Exibir os valores de Roll, Pitch e Yaw
-    Serial.print("Roll (X): "); Serial.print(degreesX); Serial.print("° ");
-    Serial.print("Pitch (Y): "); Serial.print(degreesY); Serial.print("° ");
-    Serial.print("Yaw (Z): "); Serial.print(degreesZ); Serial.println("°");
-
-    delay(100); // Pequeno delay para leitura
+    delay(100);
   }
 }
